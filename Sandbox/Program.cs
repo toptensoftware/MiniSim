@@ -11,49 +11,32 @@ namespace Sandbox
             var B = new DriveSignal();
             var Cin = new DriveSignal();
 
-            var xor1 = new XorGate()
+            var fulladder = new FullAdder()
             {
                 A = A,
                 B = B,
+                Cin = Cin,
             };
 
-            var xor2 = new XorGate()
-            {
-                A = xor1.Y,
-                B = Cin,
-            };
+            var S = fulladder.S;
+            var Cout = fulladder.Cout;
 
-            var and1 = new AndGate()
-            {
-                A = Cin,
-                B = xor1.Y,
-            };
 
-            var and2 = new AndGate()
-            {
-                A = A,
-                B = B,
-            };
+            var circuit = new Circuit(S, Cout);
 
-            var or1 = new OrGate()
-            {
-                A = and1.Y,
-                B = and2.Y,
-            };
-
-            var S = xor2.Y;
-            var Cout = or1.Y;
-
+            circuit.StartCycle();
             A.Drive('0');
             B.Drive('0');
             Cin.Drive('0');
             Console.WriteLine($"S: {S} Cout: {Cout}");
 
+            circuit.StartCycle();
             A.Drive('1');
             B.Drive('1');
             Cin.Drive('1');
             Console.WriteLine($"S: {S} Cout: {Cout}");
 
+            circuit.StartCycle();
             A.Drive('1');
             B.Drive('0');
             Cin.Drive('1');

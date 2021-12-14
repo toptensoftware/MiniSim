@@ -8,6 +8,9 @@ namespace MiniSim.Core
     /// </summary>
     public class InverterGate : LogicGate
     {
+        /// <summary>
+        /// The input signal
+        /// </summary>
         public Signal A { get; set; }
 
         /// <inheritdoc />

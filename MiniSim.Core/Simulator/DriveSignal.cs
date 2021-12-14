@@ -25,6 +25,11 @@
         }
 
         /// <summary>
+        /// Gets the part that owns this drive signal
+        /// </summary>
+        public Part Owner => _owner;
+
+        /// <summary>
         /// Sets the value of this signal
         /// </summary>
         /// <param name="value">The new value</param>
